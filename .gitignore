@@ -1,0 +1,23 @@
+# Compiled output
+out/
+
+# Dependencies
+node_modules/
+
+# Extension package
+*.vsix
+
+# TypeScript source maps
+*.js.map
+
+# OS files
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# IDE/editor
+.vscode/settings.json
+*.swp
+*.swo
+*~
+*.vsix
