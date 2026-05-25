@@ -19,7 +19,7 @@ A VS Code extension that displays your DeepSeek API account balance in the statu
 
 ## Installation
 
-1. Download the `.vsix` file from the [releases page](https://github.com/your/repo/releases) (or build from source — see [Development](#development)).
+1. Download the `.vsix` file from the [releases page](https://github.com/MrGaang/Deepseek-balance-vscode/releases) (or build from source — see [Development](#development)).
 2. In VS Code, open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:
    ```
    Extensions: Install from VSIX...
@@ -78,13 +78,13 @@ Once installed and configured with a valid API key, the extension works automati
 
 ```
 DeepSeek API Balance
-─────────────────────
-Total Balance:    $2.61
-Granted Balance:  $0.00
-Topped Up:        $2.61
-Available:        Yes
-─────────────────────
-Last updated: 2 min ago
+
+Total: $2.61
+Granted: $0.00
+Topped up: $2.61
+Available: Yes
+
+Updated: 2 min ago
 ```
 
 ## Commands

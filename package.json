@@ -1,13 +1,14 @@
 {
-  "name": "deepseek-balance",
-  "displayName": "DeepSeek Balance",
+  "name": "deepseek-balance-checker",
+  "displayName": "DeepSeek Balance Checker",
   "description": "Show DeepSeek API account balance in the VS Code status bar",
-  "version": "0.0.1",
-  "publisher": "FosterG4",
+  "version": "0.0.2",
+  "publisher": "MrGaang",
   "repository": {
     "type": "git",
     "url": "https://github.com/FosterG4/Deepseek-balance-vscode"
   },
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -48,8 +49,9 @@
     "lint": "tsc --noEmit"
   },
   "devDependencies": {
-    "typescript": "^5.7.0",
+    "@types/node": "^20.0.0",
     "@types/vscode": "^1.85.0",
-    "@types/node": "^20.0.0"
+    "sharp": "^0.34.5",
+    "typescript": "^5.7.0"
   }
 }

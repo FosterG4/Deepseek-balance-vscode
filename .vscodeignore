@@ -7,3 +7,5 @@ tsconfig.json
 **/*.ts
 **/*.map
 test-api.js
+convert-icon.js
+icon.svg
