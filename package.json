@@ -6,7 +6,7 @@
   "publisher": "MrGaang",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FosterG4/Deepseek-balance-vscode"
+    "url": "https://github.com/FosterG4/Deepseek-balance-vscode.git"
   },
   "icon": "icon.png",
   "engines": {
