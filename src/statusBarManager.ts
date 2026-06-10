@@ -74,7 +74,7 @@ export class StatusBarManager {
   /**
    * Show the balance in the status bar with appropriate color.
    */
-  updateBalance(balance: BalanceResponse, lastFetchedAt: number | null): void {
+  updateBalance(balance: BalanceResponse, lastFetchedAt: number | null, lowBalanceThreshold = 1): void {
     const primary = balance.balance_infos[0];
     const total = parseFloat(primary?.total_balance ?? '0');
 
@@ -90,7 +90,7 @@ export class StatusBarManager {
     if (!balance.is_available) {
       this.item.color = new vscode.ThemeColor('statusBarItem.warningForeground');
       this.item.backgroundColor = new vscode.ThemeColor('statusBarItem.errorBackground');
-    } else if (total < 1) {
+    } else if (lowBalanceThreshold > 0 && total < lowBalanceThreshold) {
       // Low balance warning (yellow)
       this.item.color = new vscode.ThemeColor('statusBarItem.warningForeground');
       this.item.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');

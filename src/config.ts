@@ -8,6 +8,8 @@ import * as vscode from 'vscode';
 export interface ExtensionConfig {
   /** Refresh interval in seconds (default: 300, min: 30) */
   refreshIntervalSeconds: number;
+  /** Balance threshold in USD below which the status bar turns yellow (default: 1) */
+  lowBalanceThreshold: number;
 }
 
 const CONFIG_SECTION = 'deepseekBalance';
@@ -22,6 +24,10 @@ export function getConfig(): ExtensionConfig {
     refreshIntervalSeconds: Math.max(
       30,
       config.get<number>('refreshInterval', 300)
+    ),
+    lowBalanceThreshold: Math.max(
+      0,
+      config.get<number>('lowBalanceThreshold', 1)
     ),
   };
 }

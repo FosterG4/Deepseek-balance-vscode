@@ -2,7 +2,7 @@
   "name": "deepseek-balance-checker",
   "displayName": "DeepSeek Balance Checker",
   "description": "Show DeepSeek API account balance in the VS Code status bar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "MrGaang",
   "repository": {
     "type": "git",
@@ -38,6 +38,12 @@
           "default": 300,
           "minimum": 30,
           "description": "Refresh interval in seconds (minimum: 30)"
+        },
+        "deepseekBalance.lowBalanceThreshold": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "description": "Balance threshold in USD below which the status bar turns yellow (set to 0 to disable)"
         }
       }
     }

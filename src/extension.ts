@@ -7,7 +7,7 @@
 
 import * as vscode from 'vscode';
 import { BalanceCache } from './cache';
-import { getApiKey, setApiKey, hasApiKey, getRefreshIntervalMs } from './config';
+import { getApiKey, setApiKey, hasApiKey, getConfig, getRefreshIntervalMs } from './config';
 import { fetchBalance } from './deepseekApi';
 import { StatusBarManager } from './statusBarManager';
 
@@ -49,7 +49,7 @@ async function refreshBalance(force = false): Promise<void> {
   try {
     const balance = await fetchBalance(apiKey);
     cache.set(balance);
-    statusBar.updateBalance(balance, cache.getLastFetchedAt());
+    statusBar.updateBalance(balance, cache.getLastFetchedAt(), getConfig().lowBalanceThreshold);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
 
@@ -57,7 +57,7 @@ async function refreshBalance(force = false): Promise<void> {
     if (cache.hasData()) {
       cache.markStale();
       const data = cache.get()!;
-      statusBar.updateBalance(data, cache.getLastFetchedAt());
+      statusBar.updateBalance(data, cache.getLastFetchedAt(), getConfig().lowBalanceThreshold);
       statusBar.updateStale(cache.getLastFetchedAt());
     } else {
       statusBar.updateError(message);
@@ -147,7 +147,7 @@ export function activate(context: vscode.ExtensionContext): void {
   // Show cached data immediately if available (from a previous fetch in this session)
   if (cache.hasData()) {
     const data = cache.get()!;
-    statusBar.updateBalance(data, cache.getLastFetchedAt());
+    statusBar.updateBalance(data, cache.getLastFetchedAt(), getConfig().lowBalanceThreshold);
   }
 
   // Start polling

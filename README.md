@@ -5,7 +5,7 @@ A VS Code extension that displays your DeepSeek API account balance in the statu
 ## Features
 
 - **Status bar display** — Shows your current DeepSeek balance right in the VS Code status bar: `$(dashboard) DeepSeek: $2.61`
-- **Color-coded** — Green for normal balance, yellow for low balance (< $1), red for errors
+- **Color-coded** — Green for normal balance, yellow for low balance (threshold configurable, default < $1), red for errors
 - **Detailed tooltip** — Hover to see total balance, granted balance, topped-up amount, and last update time
 - **Automatic refresh** — Polls every 5 minutes by default (configurable, minimum 30 seconds)
 - **Manual refresh** — Run command `DeepSeek Balance: Refresh Now` to force an immediate fetch
@@ -69,8 +69,8 @@ Once installed and configured with a valid API key, the extension works automati
 
 | Status Bar Shows | What It Means |
 |---|---|
-| `$(dashboard) DeepSeek: $5.00` | Normal — balance available and ≥ $1 |
-| `$(dashboard) DeepSeek: $0.42` | Low balance (< $1) — warning color |
+| `$(dashboard) DeepSeek: $5.00` | Normal — balance available and above low balance threshold (default $1) |
+| `$(dashboard) DeepSeek: $0.42` | Low balance (below threshold) — warning color |
 | `$(key) DeepSeek: Set API Key` | No API key configured — click to set |
 | `$(error) DeepSeek: Error` | Fetch failed — hover to see error details |
 
@@ -97,14 +97,21 @@ Updated: 2 min ago
 ## Settings
 
 | Setting ID | Type | Default | Min | Description |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | `deepseekBalance.refreshInterval` | `number` | `300` | `30` | Refresh interval in seconds (5 min default) |
+| `deepseekBalance.lowBalanceThreshold` | `number` | `1` | `0` | Balance threshold in USD; status bar turns yellow when balance drops below this value (set to `0` to disable) |
 
 To change the refresh interval:
 
 1. Open Settings (`Ctrl+,` / `Cmd+,`)
 2. Search for `deepseekBalance.refreshInterval`
 3. Set a value between 30 and 3600 seconds
+
+To change the low balance threshold:
+
+1. Open Settings (`Ctrl+,` / `Cmd+,`)
+2. Search for `deepseekBalance.lowBalanceThreshold`
+3. Set a value in USD (e.g., `5` to warn when balance drops below $5, or `0` to disable the yellow warning)
 
 ## Development
 
@@ -135,7 +142,7 @@ npm install -g @vscode/vsce
 # Package the extension
 vsce package
 
-# Output: deepseek-balance-0.0.1.vsix
+# Output: deepseek-balance-checker-0.0.3.vsix
 ```
 
 ## Architecture
